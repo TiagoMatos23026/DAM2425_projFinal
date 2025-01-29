@@ -1,11 +1,7 @@
 package com.example.dam24_25_projfinal
 
-import android.app.Activity
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.dam24_25_projfinal.databinding.ActivityMainBinding
 
@@ -19,13 +15,13 @@ class MainActivity : AppCompatActivity() {
         //implementacao de view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(Home())
+        replaceFragment(HomeFragment())
 
         binding.bottomNavbar.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.home -> replaceFragment(Home())
-                R.id.profile -> replaceFragment(Profile())
-                R.id.add_page -> replaceFragment(CreatePage())
+                R.id.home -> replaceFragment(HomeFragment())
+                R.id.profile -> replaceFragment(ProfileFragment())
+                R.id.add_page -> replaceFragment(CreatePageFragment())
 
                 else ->{
 
