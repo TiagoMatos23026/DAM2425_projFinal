@@ -5,4 +5,8 @@
     <string name="home">Home</string>
     <string name="add_page">Nova Página</string>
     <string name="profile">Perfil</string>
+    <string name="username_hint">Nome de Utilizador</string>
+    <string name="password_hint">Senha</string>
+    <string name="login_button_text">Entrar</string>
+    <string name="register_button_text">Não tem conta? Registe-se.</string>
 </resources>
