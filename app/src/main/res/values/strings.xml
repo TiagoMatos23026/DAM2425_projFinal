@@ -9,4 +9,14 @@
     <string name="password_hint">Senha</string>
     <string name="login_button_text">Entrar</string>
     <string name="register_button_text">Não tem conta? Registe-se.</string>
+
+    <string name="privacy_policy">Ao utilizar esta aplicação, o utilizador autoriza o armazenamento e processamento dos seus dados para efeitos de gestão da conta e apresentação pública das informações que decidir disponibilizar. Estes dados serão utilizados exclusivamente para garantir o correto funcionamento da aplicação e a experiência pretendida pelo utilizador.
+
+A privacidade e a segurança dos dados são prioridades, sendo adotadas medidas adequadas para a sua proteção. No entanto, o utilizador deve estar ciente de que estes termos poderão ser alterados no futuro para refletir melhorias, mudanças legais ou novas funcionalidades.
+
+Recomenda-se que o utilizador consulte regularmente esta política para se manter informado sobre eventuais atualizações. A continuidade da utilização da aplicação após qualquer modificação será considerada como aceitação dos novos termos.
+
+</string>
+    <string name="accept_privacy_policy_button_text">Aceitar e continuar</string>
+
 </resources>

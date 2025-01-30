@@ -1,5 +1,6 @@
 package com.example.dam24_25_projfinal
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -11,6 +12,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        //Verifica se os termos foram aceites
+        /*
+        if (!SharedPreferencesHelper.hasAcceptedTerms(this)) {
+            val intent = Intent(this, PrivacyPolicyAgreement::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+
+         */
+
+
+
+
+
+
+
 
         //implementacao de view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
