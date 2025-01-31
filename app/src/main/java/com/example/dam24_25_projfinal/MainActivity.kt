@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(HomeFragment(), "PROFILE_FRAGMENT")
+        replaceFragment(HomeFragment(), "HOME_FRAGMENT")
 
         binding.bottomNavbar.setOnItemSelectedListener {
             when(it.itemId){

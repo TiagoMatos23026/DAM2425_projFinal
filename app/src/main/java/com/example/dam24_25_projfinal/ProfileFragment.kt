@@ -1,59 +1,92 @@
 package com.example.dam24_25_projfinal
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import androidx.fragment.app.Fragment
+import com.example.dam24_25_projfinal.api.RetrofitInitializer
+import com.example.dam24_25_projfinal.models.Utilizador
+import com.example.dam24_25_projfinal.models.Utilizadore
+import com.example.dam24_25_projfinal.models.UtilizadoresResponse
+import com.example.dam24_25_projfinal.utils.Preferences
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var txtUsername: TextView
+    private lateinit var txtBiografia: TextView
+    private lateinit var txtPaginas: TextView
+    private lateinit var btnSair: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        txtUsername = view.findViewById(R.id.txtUsername)
+        txtBiografia = view.findViewById(R.id.txtBiografia)
+        btnSair = view.findViewById(R.id.btnSair)
+
+        // Obter o userId das SharedPreferences
+        val userId = Preferences.getUser(requireContext())?.toIntOrNull()
+
+        // Chamar a API para obter os detalhes do utilizador, se o userId for válido
+        userId?.let { fetchUserProfile(it) }
+
+        // Configurar o botão "Sair" para limpar o token e redirecionar
+        btnSair.setOnClickListener {
+            logOutUser()
+        }
+
+        return view
+    }
+
+    private fun fetchUserProfile(userId: Int) {
+        val token = "Bearer segredo" // Trocar pelo token real se necessário
+        val apiService = RetrofitInitializer().ApiConnections()
+
+        apiService.getUserById(token, userId).enqueue(object : Callback<Utilizadore?> {
+            override fun onResponse(call: Call<Utilizadore?>, response: Response<Utilizadore?>) {
+                val user = response.body()?.utilizadore
+                if (user != null) {
+                    txtUsername.text = user.user
+                    txtBiografia.text = user.biografia
+                } else {
+                    Log.e("ProfileFragment", "Erro ao buscar perfil do utilizador")
+                }
+            }
+
+            override fun onFailure(call: Call<Utilizadore?>, t: Throwable) {
+                Log.e("ProfileFragment", "Erro na chamada à API: ${t.message}")
+            }
+        })
+    }
+
+    // Função para limpar o token e fazer logout
+    private fun logOutUser() {
+        Preferences.clearToken(requireContext()) // Limpar o token das preferências
+        Preferences.setUser(requireContext(), "") // Limpar o userId
+
+        // Redirecionar para a MainActivity (ou LoginActivity, caso queira)
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity(intent)
+
+        // Finalizar a atividade atual (opcional)
+        activity?.finish()
+
+        Log.d("ProfileFragment", "Usuário deslogado com sucesso.")
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment fragment_profile.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance() = ProfileFragment()
     }
 }

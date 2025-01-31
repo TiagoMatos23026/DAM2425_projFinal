@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.logging.interceptor) // Optional: Logging
 
     implementation(libs.androidx.cardview)
+    implementation(libs.androidx.datastore.preferences.core.jvm)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

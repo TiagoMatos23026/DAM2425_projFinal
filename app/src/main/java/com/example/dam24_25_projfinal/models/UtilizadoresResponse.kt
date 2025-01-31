@@ -8,8 +8,13 @@ data class Utilizador(
     val user: String,
     val email: String,
     val password: String,
-    val paginas: String,  // Agora é uma lista de inteiros
+    val paginas: String,
+    val biografia: String,
     val id: Int
+)
+
+data class Utilizadore(
+    val utilizadore: Utilizador
 )
 
 @Serializable
