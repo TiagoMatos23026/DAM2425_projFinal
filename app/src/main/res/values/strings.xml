@@ -19,4 +19,5 @@ Recomenda-se que o utilizador consulte regularmente esta política para se mante
 </string>
     <string name="accept_privacy_policy_button_text">Aceitar e continuar</string>
 
+    <string name="sair_button_text">Sair</string>
 </resources>
