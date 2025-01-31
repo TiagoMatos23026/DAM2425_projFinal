@@ -10,6 +10,8 @@ object Preferences {
 
     private const val PREFS = "prefsFile"
 
+    private const val USER_ID = "user"
+
     private const val KEY_TOKEN = "token"
 
     private fun getSharedPreferences(context: Context): SharedPreferences {
@@ -46,4 +48,14 @@ object Preferences {
         return getSharedPreferences(context).getString(KEY_TOKEN, null)
     }
 
+    fun setUser(context: Context, user: String){
+        getSharedPreferences(context)
+            .edit()
+            .putString(USER_ID, user)
+            .apply()
+    }
+
+    fun getUser(context: Context): String?{
+        return getSharedPreferences(context).getString(USER_ID, null)
+    }
 }
