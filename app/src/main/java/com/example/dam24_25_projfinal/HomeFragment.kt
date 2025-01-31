@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dam24_25_projfinal.api.RetrofitInitializer
 import com.example.dam24_25_projfinal.models.Pagina
 import com.example.dam24_25_projfinal.models.PaginasResponse
@@ -69,7 +70,7 @@ class HomeFragment : Fragment() {
                     val arrayPagina = responseBody.paginas
 
                     // Agora, atualizamos a UI com os dados recebidos
-                    view?.findViewById<TextView>(R.id.txtpages)?.text =
+                    view?.findViewById<RecyclerView>(R.id.recyclerView)?.text =
                         arrayPagina.joinToString("\n") { it.texto ?: "No Title" }
 
                     /**
