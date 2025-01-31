@@ -50,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
                     if (user != null) {
                         Toast.makeText(this@LoginActivity, "Login bem-sucedido!", Toast.LENGTH_SHORT).show()
                         Preferences.saveToken(this@LoginActivity, "segredo")
+                        Preferences.setUser(this@LoginActivity, user.id.toString())
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
