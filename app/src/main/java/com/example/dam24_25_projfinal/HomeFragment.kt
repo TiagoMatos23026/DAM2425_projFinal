@@ -6,71 +6,83 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import android.widget.TextView
+import com.example.dam24_25_projfinal.api.RetrofitInitializer
+import com.example.dam24_25_projfinal.models.Pagina
 import com.example.dam24_25_projfinal.models.Paginas
+import com.example.dam24_25_projfinal.models.PaginasResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+//private const val ARG_PAGINAS = "paginas"
+var arrayPagina: Array<Pagina>? = null
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    //private var paginas: Array<Pagina>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
-
-
-
+        arrayPagina = getPaginas()
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view: View = inflater.inflate(R.layout.fragment_home, container, false)
+        val txt: TextView = view.findViewById(R.id.txtpages)
+
+        txt.text = "A Carregar..."
+        val oi = arrayPagina
+
+        /*
+        if (arrayPagina != null) {
+            val pageTitles = paginas!!.joinToString("\n") { it.titulo ?: "" }
+            txt.text = pageTitles
+        } else {
+            txt.text = "No pages received"
+        }
+        */
+
+
+        return view
     }
 
-    /*
-    fun processData(call: Call<List<Paginas>>) {
-        call.enqueue(object : Callback<List<Paginas>?> {
-            override fun onResponse(call: Call<List<Paginas>?>?,
-                                    response: Response<List<Paginas>?>?) {
-                response?.body()?.let {
-                    val notes: List<Paginas> = it
-                    configureList(notes)
+    companion object {
+        @JvmStatic
+        fun newInstance(paginas: Array<Pagina>) =
+            HomeFragment().apply {
+                arguments = Bundle().apply {
+                    //putParcelableArray(ARG_PAGINAS, paginas)
                 }
             }
-
-            override fun onFailure(call: Call<List<Note>?>?, t: Throwable?) {
-                t?.message?.let { Log.e("onFailure error", it) }
-            }
-        })
     }
 
-     */
+    private fun getPaginas():Array<Pagina>? {
+        val retrofitData = RetrofitInitializer().ApiConnections().getAllPages()
+        var arrayPagina: Array<Pagina>? = null
+        retrofitData.enqueue(object : Callback<PaginasResponse?> {
 
-    /*
-    private fun configureList(notes: List<Paginas>) {
-        val recyclerView: RecyclerView = findViewById(R.id.note_list_recyclerview)
-        recyclerView.adapter = NoteListAdapter(notes, this)
-        val layoutManager = StaggeredGridLayoutManager( 2, StaggeredGridLayoutManager.VERTICAL)
-        recyclerView.layoutManager = layoutManager
-    }*/
+            override fun onResponse(call: Call<PaginasResponse?>, response: Response<PaginasResponse?>) {
+                val responseBody = response.body()
+                if (responseBody != null) {
+                    // Quando a resposta chega, atualizamos a UI
+                    val arrayPagina = responseBody.paginas
+
+                    // Agora, atualizamos a UI com os dados recebidos
+                    view?.findViewById<TextView>(R.id.txtpages)?.text =
+                        arrayPagina.joinToString("\n") { it.titulo ?: "No Title" }
+                } else {
+                    // Se não houver resposta válida, mostrar mensagem de erro
+                    view?.findViewById<TextView>(R.id.txtpages)?.text = "No pages received"
+                }
+
+            }
+            override fun onFailure(call: Call<PaginasResponse?>, t: Throwable) {
+                Log.d("HomeFragment", "onFailure: " +t.message)
+            }
+        })
+
+        return arrayPagina
+    }
 }

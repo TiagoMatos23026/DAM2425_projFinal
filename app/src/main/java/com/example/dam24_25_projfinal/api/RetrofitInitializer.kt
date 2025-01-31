@@ -10,11 +10,10 @@ class RetrofitInitializer {
     private val gson: Gson = GsonBuilder().setLenient().create()
 
     private val retrofit = Retrofit.Builder()
-        //.baseUrl("http://10.0.2.2/")
-        .baseUrl("http://ram.ipt.pt")
+        .baseUrl("https://api.sheety.co/603075854cd9316246fab517d2525742/damProjFinal/")
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 
-    fun noteService() = retrofit.create(ApiConnections::class.java)
+    fun ApiConnections() = retrofit.create(ApiConnections::class.java)
 
 }

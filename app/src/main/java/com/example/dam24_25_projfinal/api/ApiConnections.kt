@@ -1,7 +1,13 @@
 package com.example.dam24_25_projfinal.api
 
 import com.example.dam24_25_projfinal.models.Paginas
+import com.example.dam24_25_projfinal.models.PaginasResponse
+import retrofit2.Call
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.POST
 
 /**
  * Endpoints da API
@@ -12,6 +18,6 @@ interface ApiConnections{
     /**
      * Pegar Páginas na Base de Dados
      */
-    @GET("paginas") // Endpoint para obter a lista de utilizadores
-    fun getAllPages(): Paginas
+    @GET("paginas")
+    fun getAllPages(): Call<PaginasResponse>
 }

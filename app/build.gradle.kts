@@ -1,7 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-}
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.0"
+
+    }
 
 android {
     namespace = "com.example.dam24_25_projfinal"
@@ -42,17 +44,23 @@ android {
 
 dependencies {
 
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0") // For JSON parsing
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson) // For JSON parsing
 
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0") // Optional: Logging
+    implementation(libs.kotlinx.serialization.core)
+    implementation(libs.kotlinx.serialization.json.v162)
+
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor) // Optional: Logging
+
+    implementation(libs.androidx.cardview)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
