@@ -13,14 +13,19 @@ import retrofit2.http.POST
  * Endpoints da API
  */
 
-interface ApiConnections{
+interface ApiConnections {
 
     /**
      * Pegar Páginas na Base de Dados
      */
     @GET("paginas")
-    fun getAllPages(): Call<PaginasResponse>
+    fun getAllPages(
+        @Header("Authorization") authHeader: String
+    ): Call<PaginasResponse>
 
     @GET("utilizadores")
-    fun getAllUsers(): Call<UtilizadoresResponse>
+    fun getAllUsers4Login(
+        @Header("Authorization") authHeader: String = "Bearer segredo" // Token fixo
+    ): Call<UtilizadoresResponse>
+
 }
