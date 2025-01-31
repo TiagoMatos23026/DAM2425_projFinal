@@ -13,6 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DAM2425_projFinal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
@@ -26,6 +28,11 @@
         <activity
             android:name=".PrivacyPolicyActivity"
             android:exported="true">
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
         </activity>
     </application>
 

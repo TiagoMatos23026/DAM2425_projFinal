@@ -10,6 +10,8 @@ object Preferences {
 
     private const val PREFS = "prefsFile"
 
+    private const val KEY_TOKEN = "token"
+
     private fun getSharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
     }
@@ -24,6 +26,24 @@ object Preferences {
             .putBoolean(KEY_TERMS, accepted)
             .apply()
         Log.d("Preferences", "Terms accepted: $accepted")
+    }
+
+    fun saveToken(context: Context, token: String) {
+        getSharedPreferences(context)
+            .edit()
+            .putString(KEY_TOKEN, token)
+            .apply()
+    }
+
+    fun clearToken(context: Context) {
+        getSharedPreferences(context)
+            .edit()
+            .remove(KEY_TOKEN)
+            .apply()
+    }
+
+    fun getToken(context: Context): String? {
+        return getSharedPreferences(context).getString(KEY_TOKEN, null)
     }
 
 }

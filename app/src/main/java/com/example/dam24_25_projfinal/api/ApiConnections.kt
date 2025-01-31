@@ -1,6 +1,7 @@
 package com.example.dam24_25_projfinal.api
 
 import com.example.dam24_25_projfinal.models.PaginasResponse
+import com.example.dam24_25_projfinal.models.UtilizadoresResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -19,4 +20,7 @@ interface ApiConnections{
      */
     @GET("paginas")
     fun getAllPages(): Call<PaginasResponse>
+
+    @GET("utilizadores")
+    fun getAllUsers(): Call<UtilizadoresResponse>
 }

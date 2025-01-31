@@ -14,6 +14,7 @@ import com.example.dam24_25_projfinal.utils.Preferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Date
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,15 +36,22 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        //Verifica token
+        val token = Preferences.getToken(this)
+        if (token != "segredo") {
 
-
-
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                return
+            } else {
+                Preferences.clearToken(this)
+            }
 
         //implementacao de view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(ProfileFragment(), "PROFILE_FRAGMENT")
+        replaceFragment(HomeFragment(), "PROFILE_FRAGMENT")
 
         binding.bottomNavbar.setOnItemSelectedListener {
             when(it.itemId){
