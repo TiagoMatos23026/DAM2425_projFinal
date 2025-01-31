@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun getUsers(username: String, password: String) {
-        val retrofitData = RetrofitInitializer().ApiConnections().getAllUsers()
+        val retrofitData = RetrofitInitializer().ApiConnections().getAllUsers4Login()
 
         retrofitData.enqueue(object : Callback<UtilizadoresResponse?> {
             override fun onResponse(call: Call<UtilizadoresResponse?>, response: Response<UtilizadoresResponse?>) {
