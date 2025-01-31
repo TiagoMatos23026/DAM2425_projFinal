@@ -4,15 +4,49 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardElevation="4dp"
-    android:padding="16dp">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
-    <TextView
-        android:id="@+id/titulo"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Título da Página"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Título"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtTexto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Texto da página"
+            android:textSize="14sp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:paddingTop="4dp"/>
+
+        <TextView
+            android:id="@+id/txtUtilizador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Utilizador"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:paddingTop="4dp" />
+
+        <TextView
+            android:id="@+id/txtId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:paddingTop="2dp" />
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

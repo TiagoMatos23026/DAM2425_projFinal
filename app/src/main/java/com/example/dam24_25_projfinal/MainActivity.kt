@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 return
             } else {
-                Preferences.clearToken(this)
+
             }
 
         //implementacao de view binding

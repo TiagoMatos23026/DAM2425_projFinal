@@ -48,9 +48,10 @@ class LoginActivity : AppCompatActivity() {
                     val user = responseBody.utilizadores.find { it.user == username && it.password == password }
 
                     if (user != null) {
-                        Toast.makeText(this@LoginActivity, "Login bem-sucedido!", Toast.LENGTH_SHORT).show()
                         Preferences.saveToken(this@LoginActivity, "segredo")
+                        val token = Preferences.getToken(this@LoginActivity)
                         Preferences.setUser(this@LoginActivity, user.id.toString())
+                        Toast.makeText(this@LoginActivity, "Login bem-sucedido! $token", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
