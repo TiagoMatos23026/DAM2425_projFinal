@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.example.dam24_25_projfinal.api.RetrofitInitializer
 import com.example.dam24_25_projfinal.models.Pagina
-import com.example.dam24_25_projfinal.models.Paginas
 import com.example.dam24_25_projfinal.models.PaginasResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -62,7 +61,7 @@ class HomeFragment : Fragment() {
         val retrofitData = RetrofitInitializer().ApiConnections().getAllPages()
         var arrayPagina: Array<Pagina>? = null
         retrofitData.enqueue(object : Callback<PaginasResponse?> {
-
+            //se tiver resposta da api
             override fun onResponse(call: Call<PaginasResponse?>, response: Response<PaginasResponse?>) {
                 val responseBody = response.body()
                 if (responseBody != null) {
@@ -71,13 +70,19 @@ class HomeFragment : Fragment() {
 
                     // Agora, atualizamos a UI com os dados recebidos
                     view?.findViewById<TextView>(R.id.txtpages)?.text =
-                        arrayPagina.joinToString("\n") { it.titulo ?: "No Title" }
+                        arrayPagina.joinToString("\n") { it.texto ?: "No Title" }
+
+                    /**
+                     * Chamar func getUtilizadorById
+                     */
+
                 } else {
                     // Se não houver resposta válida, mostrar mensagem de erro
                     view?.findViewById<TextView>(R.id.txtpages)?.text = "No pages received"
                 }
 
             }
+            //se não tiver resposta da api
             override fun onFailure(call: Call<PaginasResponse?>, t: Throwable) {
                 Log.d("HomeFragment", "onFailure: " +t.message)
             }
@@ -85,4 +90,6 @@ class HomeFragment : Fragment() {
 
         return arrayPagina
     }
+
+
 }

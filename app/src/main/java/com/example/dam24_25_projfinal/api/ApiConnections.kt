@@ -1,6 +1,5 @@
 package com.example.dam24_25_projfinal.api
 
-import com.example.dam24_25_projfinal.models.Paginas
 import com.example.dam24_25_projfinal.models.PaginasResponse
 import retrofit2.Call
 import retrofit2.http.Field
