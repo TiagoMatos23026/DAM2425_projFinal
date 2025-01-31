@@ -5,4 +5,5 @@
     <string name="home">Home</string>
     <string name="add_page">Nova Página</string>
     <string name="profile">Perfil</string>
+    <string name="sair_button_text">Sair</string>
 </resources>
