@@ -1,13 +1,16 @@
 package com.example.dam24_25_projfinal
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dam24_25_projfinal.api.RetrofitInitializer
 import com.example.dam24_25_projfinal.databinding.ActivityMainBinding
 import com.example.dam24_25_projfinal.models.Pagina
 import com.example.dam24_25_projfinal.models.PaginasResponse
+import com.example.dam24_25_projfinal.utils.Preferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,16 +25,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         //Verifica se os termos foram aceites
-        /*
-        if (!SharedPreferencesHelper.hasAcceptedTerms(this)) {
-            val intent = Intent(this, PrivacyPolicyAgreement::class.java)
+
+        if (!Preferences.termsAccepted(this)) {
+            val intent = Intent(this, PrivacyPolicyActivity::class.java)
             startActivity(intent)
             finish()
             return
         }
 
-        */
+
+
+
 
         //implementacao de view binding
         binding = ActivityMainBinding.inflate(layoutInflater)
