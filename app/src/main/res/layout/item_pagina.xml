@@ -47,12 +47,13 @@
 
         <!-- ID da Página -->
         <TextView
-            android:id="@+id/txtId"
+            android:id="@+id/txtLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID"
+            android:text="Localização"
             android:textSize="12sp"
             android:textColor="@android:color/darker_gray"
-            android:paddingTop="2dp" />
+            android:paddingTop="4dp" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

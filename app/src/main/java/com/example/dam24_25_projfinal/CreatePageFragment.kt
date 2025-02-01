@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -33,6 +34,8 @@ class CreatePageFragment : Fragment() {
     private lateinit var tituloEditText: EditText
     private lateinit var textoEditText: EditText
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var progressBar: ProgressBar
+    private lateinit var layoutCreatePage: View
 
     /**
      * Funcao chamada ao criar a view para o fragmento
@@ -55,6 +58,7 @@ class CreatePageFragment : Fragment() {
                 permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) ||
                         permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
                     Toast.makeText(requireContext(), "Acesso à localização concedido.", Toast.LENGTH_SHORT).show()
+
                     getLocationAndCreatePage()
                 }
                 else -> {
@@ -135,6 +139,9 @@ class CreatePageFragment : Fragment() {
             )
 
             val paginae = Paginae(pagina)
+
+            progressBar.visibility = View.VISIBLE
+            layoutCreatePage.visibility = View.GONE
 
             val call = RetrofitInitializer().ApiConnections().createPage(bearerToken, paginae)
             call.enqueue(object : Callback<Paginae> {

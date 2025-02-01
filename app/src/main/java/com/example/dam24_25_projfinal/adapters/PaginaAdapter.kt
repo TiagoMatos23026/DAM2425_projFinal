@@ -19,7 +19,9 @@ class PaginaAdapter(private val paginas: List<Pagina>, private val activity: Fra
     class PaginaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titulo: TextView = itemView.findViewById(R.id.txtTitulo)
         val texto: TextView = itemView.findViewById(R.id.txtTexto)
+        val localizacao: TextView = itemView.findViewById(R.id.txtLocalizacao)  // Nova referência
     }
+
 
     /**
      * Cria o holder para a view da pagina
@@ -33,6 +35,7 @@ class PaginaAdapter(private val paginas: List<Pagina>, private val activity: Fra
         val pagina = paginas[position]
         holder.titulo.text = pagina.titulo ?: "Sem título"
         holder.texto.text = pagina.texto ?: "Sem texto"
+        holder.localizacao.text = pagina.localizacao ?: "Sem localização"  // Atribui a localização
 
         holder.itemView.setOnClickListener {
             val fragment = PaginaDetalheFragment.newInstance(pagina)
