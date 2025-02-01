@@ -35,6 +35,9 @@ class ProfileFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PaginaAdapter
 
+    /**
+     * Funcao chamada ao criar a view para o fragmento
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -58,7 +61,7 @@ class ProfileFragment : Fragment() {
         }
 
         btnEliminarConta.setOnClickListener {
-            // Ainda sem lógica para eliminar a conta
+            TODO()
         }
 
         getPaginas()
@@ -66,6 +69,9 @@ class ProfileFragment : Fragment() {
         return view
     }
 
+    /**
+     * Funcao para ir buscar o perfil do utilizador que esta logged in
+     */
     private fun fetchUserProfile(userId: Int) {
         progressBar.visibility = View.VISIBLE
         profileContent.visibility = View.GONE
@@ -94,6 +100,10 @@ class ProfileFragment : Fragment() {
         })
     }
 
+
+    /**
+     * Funcao chamada para buscar a lista de paginas e filtrar as que pertencem ao utilizador logged in
+     */
     private fun getPaginas() {
         progressBar.visibility = View.VISIBLE
 
@@ -108,11 +118,9 @@ class ProfileFragment : Fragment() {
 
                 val responseBody = response.body()
                 if (responseBody != null) {
-                    // Filtrar apenas as páginas do utilizador logado
                     val paginasFiltradas = responseBody.paginas.filter { it.utilizador == userId }
 
                     if (paginasFiltradas.isNotEmpty()) {
-                        // Configurar o adapter do RecyclerView
                         adapter = PaginaAdapter(paginasFiltradas, requireActivity())
                         recyclerView.adapter = adapter
                     } else {

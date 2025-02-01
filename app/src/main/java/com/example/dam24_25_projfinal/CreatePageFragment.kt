@@ -27,6 +27,9 @@ class CreatePageFragment : Fragment() {
     private lateinit var tituloEditText: EditText
     private lateinit var textoEditText: EditText
 
+    /**
+     * Funcao chamada ao criar a view para o fragmento
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,6 +48,10 @@ class CreatePageFragment : Fragment() {
         return view
     }
 
+    /**
+     * Funcao para criar uma nova pagina
+     * Recebe um userId que e o id do utilizador que esta logged in
+     */
     private fun createPage(userId: Int) {
         val titulo = tituloEditText.text.toString()
         val texto = textoEditText.text.toString()
@@ -60,21 +67,21 @@ class CreatePageFragment : Fragment() {
         val pagina = Pagina(
             titulo = titulo,
             texto = texto,
-            utilizador = userId,  // Suponha que o ID do utilizador seja 1, substitua conforme necessário
-            id = null  // O ID será gerado pela API
+            utilizador = userId,
+            id = null
         )
 
         val paginae = Paginae(pagina)
 
-        val call = RetrofitInitializer().ApiConnections().createPage(bearerToken, paginae) // Passa o token
+        val call = RetrofitInitializer().ApiConnections().createPage(bearerToken, paginae)
 
         call.enqueue(object : Callback<Paginae> {
             override fun onResponse(call: Call<Paginae>, response: Response<Paginae>) {
                 if (response.isSuccessful) {
                     Toast.makeText(requireContext(), "Página criada com sucesso!", Toast.LENGTH_SHORT).show()
                     val fragmentTransaction = parentFragmentManager.beginTransaction()
-                    fragmentTransaction.replace(R.id.frame_layout, ProfileFragment()) // R.id.fragmentContainer é o container do fragmento
-                    fragmentTransaction.addToBackStack(null) // Opcional: para permitir voltar
+                    fragmentTransaction.replace(R.id.frame_layout, ProfileFragment())
+                    fragmentTransaction.addToBackStack(null)
                     fragmentTransaction.commit()
                 } else {
                     Toast.makeText(requireContext(), "Erro ao criar página", Toast.LENGTH_SHORT).show()

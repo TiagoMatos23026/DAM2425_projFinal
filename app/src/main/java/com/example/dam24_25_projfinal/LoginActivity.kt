@@ -17,6 +17,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+    /**
+     * Funcao chamada ao iniciar a atividade
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -45,6 +48,10 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Funcao chamada para pegar a lista de utilizadores para fazer login
+     * *******Maneira insegura de se fazer login*******
+     */
     private fun getUsers(username: String, password: String) {
         val retrofitData = RetrofitInitializer().ApiConnections().getAllUsers4Login()
 

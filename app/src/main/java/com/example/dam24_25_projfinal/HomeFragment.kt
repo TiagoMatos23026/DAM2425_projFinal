@@ -24,10 +24,13 @@ class HomeFragment : Fragment() {
     private lateinit var progressBar: View
     private var arrayPagina: Array<Pagina>? = null
 
+    /**
+     * Funcao chamada ao criar a view para o fragmento
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
-        progressBar = view.findViewById(R.id.progressBar)  // Referência ao ProgressBar
+        progressBar = view.findViewById(R.id.progressBar)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         getPaginas()
@@ -35,15 +38,18 @@ class HomeFragment : Fragment() {
         return view
     }
 
+    /**
+     * Funcao para pegar a lista de paginas da base de dados e as imprimir no ecra
+     */
     private fun getPaginas() {
-        progressBar.visibility = View.VISIBLE  // Mostra o loading
+        progressBar.visibility = View.VISIBLE
 
         val token = Preferences.getToken(requireContext())
         val retrofitData = RetrofitInitializer().ApiConnections().getAllPages("Bearer $token")
 
         retrofitData.enqueue(object : Callback<PaginasResponse?> {
             override fun onResponse(call: Call<PaginasResponse?>, response: Response<PaginasResponse?>) {
-                progressBar.visibility = View.GONE  // Esconde o loading
+                progressBar.visibility = View.GONE
 
                 val responseBody = response.body()
                 if (responseBody != null) {
@@ -57,7 +63,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<PaginasResponse?>, t: Throwable) {
-                progressBar.visibility = View.GONE  // Esconde o loading mesmo em caso de erro
+                progressBar.visibility = View.GONE
                 Log.d("HomeFragment", "Erro na API: ${t.message}")
             }
         })

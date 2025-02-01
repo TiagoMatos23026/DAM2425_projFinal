@@ -13,37 +13,45 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 
-/**
- * Endpoints da API
- */
-
 interface ApiConnections {
 
     /**
-     * Pegar Páginas na Base de Dados
+     * Metodo GET para buscar lista de paginas
      */
     @GET("paginas")
     fun getAllPages(
         @Header("Authorization") authHeader: String?
     ): Call<PaginasResponse>
 
+    /**
+     * Metodo GET para buscar lista de utilizadores
+     */
     @GET("utilizadores")
     fun getAllUsers4Login(
         @Header("Authorization") authHeader: String? = "Bearer segredo" // Token fixo
     ): Call<UtilizadoresResponse>
 
+    /**
+     * Metodo GET para buscar utilizador por ID
+     */
     @GET("utilizadores/{id}")
     fun getUserById(
         @Header("Authorization") authHeader: String?,
         @retrofit2.http.Path("id") userId: Int
     ): Call<Utilizadore>
 
+    /**
+     * Metodo POST para criar novo utilizador
+     */
     @POST("utilizadores")
     fun registerUser(
         @Header("Authorization") authHeader: String? = "Bearer segredo",
         @retrofit2.http.Body newUser: Utilizadore
     ): Call<Utilizadore>
 
+    /**
+     * Metodo POST para criar nova pagina
+     */
     @POST("paginas")
     fun createPage(
         @Header("Authorization") authHeader: String?,

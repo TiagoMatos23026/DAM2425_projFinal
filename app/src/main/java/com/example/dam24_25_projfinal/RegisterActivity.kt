@@ -16,8 +16,11 @@ import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
 
-    private val bearerToken = "Bearer segredo" // Token fixo
+    private val bearerToken = "Bearer segredo"
 
+    /**
+     * Funcao chamada ao iniciar a atividade
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -29,7 +32,6 @@ class RegisterActivity : AppCompatActivity() {
         val cancelButton = findViewById<Button>(R.id.cancel_button)
 
         cancelButton.setOnClickListener {
-            // Volta para a tela de login quando o botão "Cancelar" for pressionado
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
@@ -59,22 +61,30 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Funcao para verificar se a password e aceitavel
+     */
     private fun isValidPassword(password: String): Boolean {
-        // Validação de senha: pelo menos 8 caracteres, um número e um caractere especial
         val regex = "^(?=.*[0-9])(?=.*[!@#\$%^&*(),.?\":{}|<>]).{8,}$".toRegex()
         return regex.matches(password)
     }
 
+    /**
+     * Funcao para verificar se o email e valido
+     */
     private fun isValidEmail(email: String): Boolean {
-        // Validação simples do email (deve conter "@")
         return email.contains("@")
     }
 
+    /**
+     * Funcao para registar um novo utilizador
+     * Recebe um username, um email, uma password e uma biografia placeholder
+     */
     private fun registerUser(username: String, email: String, password: String, biography: String) {
-        val newUser = Utilizador(username, email, password, "2, 4", biography, null) // id = null
-        val requestBody = Utilizadore(newUser) // Criar o wrapper correto
+        val newUser = Utilizador(username, email, password, "2, 4", biography, null)
+        val requestBody = Utilizadore(newUser)
 
-        val call = RetrofitInitializer().ApiConnections().registerUser(bearerToken, requestBody) // Passa o token
+        val call = RetrofitInitializer().ApiConnections().registerUser(bearerToken, requestBody)
 
         call.enqueue(object : Callback<Utilizadore> {
             override fun onResponse(call: Call<Utilizadore>, response: Response<Utilizadore>) {

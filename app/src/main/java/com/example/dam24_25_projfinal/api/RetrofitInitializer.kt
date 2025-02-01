@@ -14,6 +14,9 @@ class RetrofitInitializer {
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 
+    /**
+     * Funcao para iniciar o retrofit
+     */
     fun ApiConnections() = retrofit.create(ApiConnections::class.java)
 
 }

@@ -10,17 +10,18 @@ import com.example.dam24_25_projfinal.models.Pagina
 
 class PaginaDetalheFragment : Fragment() {
 
+    /**
+     * Funcao chamada ao criar a view para o fragmento
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_pagina_detalhe, container, false)
 
         val tituloView: TextView = view.findViewById(R.id.txtTituloDetalhe)
         val textoView: TextView = view.findViewById(R.id.txtTextoDetalhe)
 
-        // Obter os argumentos passados
         val titulo = arguments?.getString("titulo") ?: "Sem título"
         val texto = arguments?.getString("texto") ?: "Sem conteúdo"
 
-        // Definir os valores nas Views
         tituloView.text = titulo
         textoView.text = texto
 
