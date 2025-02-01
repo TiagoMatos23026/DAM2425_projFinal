@@ -1,5 +1,7 @@
 package com.example.dam24_25_projfinal.api
 
+import com.example.dam24_25_projfinal.models.Pagina
+import com.example.dam24_25_projfinal.models.Paginae
 import com.example.dam24_25_projfinal.models.PaginasResponse
 import com.example.dam24_25_projfinal.models.Utilizador
 import com.example.dam24_25_projfinal.models.Utilizadore
@@ -41,6 +43,12 @@ interface ApiConnections {
         @Header("Authorization") authHeader: String? = "Bearer segredo",
         @retrofit2.http.Body newUser: Utilizadore
     ): Call<Utilizadore>
+
+    @POST("paginas")
+    fun createPage(
+        @Header("Authorization") authHeader: String?,
+        @retrofit2.http.Body newPagina: Paginae
+    ): Call<Paginae>
 
 
 
