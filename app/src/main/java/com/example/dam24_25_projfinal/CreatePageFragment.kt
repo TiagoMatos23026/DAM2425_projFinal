@@ -1,5 +1,6 @@
 package com.example.dam24_25_projfinal
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -71,6 +72,10 @@ class CreatePageFragment : Fragment() {
             override fun onResponse(call: Call<Paginae>, response: Response<Paginae>) {
                 if (response.isSuccessful) {
                     Toast.makeText(requireContext(), "Página criada com sucesso!", Toast.LENGTH_SHORT).show()
+                    val fragmentTransaction = parentFragmentManager.beginTransaction()
+                    fragmentTransaction.replace(R.id.frame_layout, ProfileFragment()) // R.id.fragmentContainer é o container do fragmento
+                    fragmentTransaction.addToBackStack(null) // Opcional: para permitir voltar
+                    fragmentTransaction.commit()
                 } else {
                     Toast.makeText(requireContext(), "Erro ao criar página", Toast.LENGTH_SHORT).show()
                 }
