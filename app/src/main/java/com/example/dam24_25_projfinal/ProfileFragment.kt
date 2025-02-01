@@ -26,6 +26,8 @@ class ProfileFragment : Fragment() {
     private lateinit var txtPaginas: TextView
     private lateinit var btnSair: Button
 
+    val token = Preferences.getToken(requireContext())
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -50,7 +52,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun fetchUserProfile(userId: Int) {
-        val token = "Bearer segredo" // Trocar pelo token real se necessário
+        val token = "Bearer $token"
         val apiService = RetrofitInitializer().ApiConnections()
 
         apiService.getUserById(token, userId).enqueue(object : Callback<Utilizadore?> {

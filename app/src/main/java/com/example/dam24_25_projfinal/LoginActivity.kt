@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dam24_25_projfinal.api.RetrofitInitializer
@@ -24,6 +25,13 @@ class LoginActivity : AppCompatActivity() {
         val passwordInput = findViewById<EditText>(R.id.password)
         val loginButton = findViewById<Button>(R.id.login_button)
 
+        val registerLink = findViewById<TextView>(R.id.register_link)
+        registerLink.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
+
         loginButton.setOnClickListener {
             val username = usernameInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
@@ -34,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show()
             }
         }
-        usernameInput.requestFocus()
+
     }
 
     private fun getUsers(username: String, password: String) {
@@ -51,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
                         Preferences.saveToken(this@LoginActivity, "segredo")
                         val token = Preferences.getToken(this@LoginActivity)
                         Preferences.setUser(this@LoginActivity, user.id.toString())
-                        Toast.makeText(this@LoginActivity, "Login bem-sucedido! $token", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "Login bem-sucedido!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()

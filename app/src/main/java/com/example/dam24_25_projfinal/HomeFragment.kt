@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
 
     private fun getPaginas() {
         val token = Preferences.getToken(requireContext())
-        Log.d("HomeFragment", "Token obtido: $token")
+
 
         val retrofitData = RetrofitInitializer().ApiConnections().getAllPages("Bearer $token")
 

@@ -35,7 +35,7 @@
             android:id="@+id/txtUtilizador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Utilizador"
+            android:text="Autor"
             android:textSize="12sp"
             android:textColor="@android:color/darker_gray"
             android:paddingTop="4dp" />

@@ -22,4 +22,12 @@
         android:text="Conteúdo do blog"
         android:textSize="16sp"
         android:gravity="start"/>
+
+    <TextView
+        android:id="@+id/txtAutor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Autor"
+        android:textSize="16sp"
+        android:gravity="start"/>
 </LinearLayout>

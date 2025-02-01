@@ -10,7 +10,7 @@ data class Utilizador(
     val password: String,
     val paginas: String,
     val biografia: String,
-    val id: Int
+    val id: Int?
 )
 
 data class Utilizadore(

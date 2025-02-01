@@ -22,19 +22,27 @@ interface ApiConnections {
      */
     @GET("paginas")
     fun getAllPages(
-        @Header("Authorization") authHeader: String
+        @Header("Authorization") authHeader: String?
     ): Call<PaginasResponse>
 
     @GET("utilizadores")
     fun getAllUsers4Login(
-        @Header("Authorization") authHeader: String = "Bearer segredo" // Token fixo
+        @Header("Authorization") authHeader: String? = "Bearer segredo" // Token fixo
     ): Call<UtilizadoresResponse>
 
     @GET("utilizadores/{id}")
     fun getUserById(
-        @Header("Authorization") authHeader: String,
+        @Header("Authorization") authHeader: String?,
         @retrofit2.http.Path("id") userId: Int
     ): Call<Utilizadore>
+
+    @POST("utilizadores")
+    fun registerUser(
+        @Header("Authorization") authHeader: String? = "Bearer segredo",
+        @retrofit2.http.Body newUser: Utilizadore
+    ): Call<Utilizadore>
+
+
 
 
 }
