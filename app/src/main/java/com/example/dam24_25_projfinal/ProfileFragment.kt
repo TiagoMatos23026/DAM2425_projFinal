@@ -23,10 +23,9 @@ class ProfileFragment : Fragment() {
 
     private lateinit var txtUsername: TextView
     private lateinit var txtBiografia: TextView
-    private lateinit var txtPaginas: TextView
     private lateinit var btnSair: Button
-
-    val token = Preferences.getToken(requireContext())
+    private lateinit var progressBar: View
+    private lateinit var profileContent: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -36,14 +35,12 @@ class ProfileFragment : Fragment() {
         txtUsername = view.findViewById(R.id.txtUsername)
         txtBiografia = view.findViewById(R.id.txtBiografia)
         btnSair = view.findViewById(R.id.btnSair)
+        progressBar = view.findViewById(R.id.progressBar)
+        profileContent = view.findViewById(R.id.profileContent)
 
-        // Obter o userId das SharedPreferences
         val userId = Preferences.getUser(requireContext())?.toIntOrNull()
-
-        // Chamar a API para obter os detalhes do utilizador, se o userId for válido
         userId?.let { fetchUserProfile(it) }
 
-        // Configurar o botão "Sair" para limpar o token e redirecionar
         btnSair.setOnClickListener {
             logOutUser()
         }
@@ -52,11 +49,17 @@ class ProfileFragment : Fragment() {
     }
 
     private fun fetchUserProfile(userId: Int) {
-        val token = "Bearer $token"
+        progressBar.visibility = View.VISIBLE
+        profileContent.visibility = View.GONE
+
+        val token = Preferences.getToken(requireContext())
         val apiService = RetrofitInitializer().ApiConnections()
 
-        apiService.getUserById(token, userId).enqueue(object : Callback<Utilizadore?> {
+        apiService.getUserById("Bearer $token", userId).enqueue(object : Callback<Utilizadore?> {
             override fun onResponse(call: Call<Utilizadore?>, response: Response<Utilizadore?>) {
+                progressBar.visibility = View.GONE
+                profileContent.visibility = View.VISIBLE
+
                 val user = response.body()?.utilizadore
                 if (user != null) {
                     txtUsername.text = user.user
@@ -67,28 +70,22 @@ class ProfileFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Utilizadore?>, t: Throwable) {
+                progressBar.visibility = View.GONE
                 Log.e("ProfileFragment", "Erro na chamada à API: ${t.message}")
             }
         })
     }
 
-    // Função para limpar o token e fazer logout
     private fun logOutUser() {
-        Preferences.clearToken(requireContext()) // Limpar o token das preferências
-        Preferences.setUser(requireContext(), "") // Limpar o userId
+        Preferences.clearToken(requireContext())
+        Preferences.setUser(requireContext(), "")
 
-        // Redirecionar para a MainActivity (ou LoginActivity, caso queira)
         val intent = Intent(requireContext(), MainActivity::class.java)
         startActivity(intent)
-
-        // Finalizar a atividade atual (opcional)
         activity?.finish()
 
-        Log.d("ProfileFragment", "Usuário deslogado com sucesso.")
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = ProfileFragment()
+        Log.d("ProfileFragment", "Utilizador saiu.")
     }
 }
+
+

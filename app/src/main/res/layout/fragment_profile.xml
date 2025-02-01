@@ -1,55 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:padding="20dp">
 
-    <TextView
-        android:id="@+id/txtUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nome do Utilizador"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="10dp"/>
-
-    <TextView
-        android:id="@+id/txtBiografia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Biografia..."
-        android:textSize="18sp"
-        android:layout_marginBottom="10dp"/>
-
-    <!-- Título da secção de páginas -->
-    <TextView
-        android:id="@+id/txtUserPagesTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Páginas"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
-
-    <!-- RecyclerView para exibir dinamicamente as páginas do utilizador -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerUserPages"
+    <!-- Layout principal, começa invisível -->
+    <LinearLayout
+        android:id="@+id/profileContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
 
-    <Button
-        android:id="@+id/btnSair"
+        <TextView
+            android:id="@+id/txtUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/txtBiografia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/txtUserPagesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Páginas"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerUserPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btnSair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sair"
+            android:padding="10dp"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
+
+    <!-- ProgressBar no centro, visível no início -->
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sair"
-        android:padding="10dp"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="20dp"/>
-</LinearLayout>
+        android:layout_gravity="center"/>
+</FrameLayout>

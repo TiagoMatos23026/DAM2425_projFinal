@@ -1,33 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/txtTituloDetalhe"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Título"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingBottom="16dp" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/txtTextoDetalhe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Conteúdo do blog"
-        android:textSize="16sp"
-        android:gravity="start"/>
+        <TextView
+            android:id="@+id/txtTituloDetalhe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="16dp" />
 
-    <TextView
-        android:id="@+id/txtAutor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Autor"
-        android:textSize="16sp"
-        android:gravity="start"/>
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtTextoDetalhe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:gravity="start"/>
+    </LinearLayout>
+</ScrollView>
