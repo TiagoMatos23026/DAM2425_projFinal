@@ -10,6 +10,7 @@ data class Pagina(
     val titulo: String,
     val texto: String?,
     val utilizador: Int,
+    val localizacao: String,
     val id: Int?
 )
 

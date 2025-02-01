@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     }
     /**
-    * Metodo para trocar de página
+    * Metodo para trocar de pagina
     */
     private fun replaceFragment(fragment: Fragment, tag: String) {
         val fragmentManager = supportFragmentManager

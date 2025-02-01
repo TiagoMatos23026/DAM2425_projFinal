@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.util.Log
 
 object Preferences {
+    private const val KEY_PERMISSIONS_GRANTED = "permissionsGranted"
 
     private const val KEY_TERMS = "acceptedTerms"
 
@@ -57,5 +58,16 @@ object Preferences {
 
     fun getUser(context: Context): String?{
         return getSharedPreferences(context).getString(USER_ID, null)
+    }
+
+    fun arePermissionsGranted(context: Context): Boolean {
+        return getSharedPreferences(context).getBoolean(KEY_PERMISSIONS_GRANTED, false)
+    }
+
+    fun setPermissionsGranted(context: Context, granted: Boolean) {
+        getSharedPreferences(context)
+            .edit()
+            .putBoolean(KEY_PERMISSIONS_GRANTED, granted)
+            .apply()
     }
 }
