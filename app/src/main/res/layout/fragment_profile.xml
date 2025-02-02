@@ -39,6 +39,25 @@
             android:layout_marginStart="10dp"
             android:layout_marginBottom="30dp"/>
 
+        <!-- Botão para editar biografia -->
+        <Button
+            android:id="@+id/btnEditBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar Biografia"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- EditText para nova biografia -->
+        <EditText
+            android:id="@+id/edtNewBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nova biografia"
+            android:maxLength="100"
+            android:visibility="gone"
+            android:layout_marginBottom="20dp"
+            android:inputType="text"/>
+
         <!-- RecyclerView para exibir páginas filtradas -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPaginas"

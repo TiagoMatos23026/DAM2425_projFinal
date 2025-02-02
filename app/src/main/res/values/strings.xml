@@ -10,11 +10,9 @@
     <string name="login_button_text">Entrar</string>
     <string name="register_button_text">Não tem conta? Registe-se.</string>
 
-    <string name="privacy_policy">Ao utilizar esta aplicação, o utilizador autoriza o armazenamento e processamento dos seus dados para efeitos de gestão da conta e apresentação pública das informações que decidir disponibilizar. Estes dados serão utilizados exclusivamente para garantir o correto funcionamento da aplicação e a experiência pretendida pelo utilizador.
-
-A privacidade e a segurança dos dados são prioridades, sendo adotadas medidas adequadas para a sua proteção. No entanto, o utilizador deve estar ciente de que estes termos poderão ser alterados no futuro para refletir melhorias, mudanças legais ou novas funcionalidades.
-
-Recomenda-se que o utilizador consulte regularmente esta política para se manter informado sobre eventuais atualizações. A continuidade da utilização da aplicação após qualquer modificação será considerada como aceitação dos novos termos.
+    <string name="privacy_policy">Esta aplicação trata-se de um projeto académico aol qual não foram implementados mecanismos de segurança devidamente avançados.
+Por favor, não introduza dados sensíveis ou pessoais, pois todos e qualquer dados que introduzir poderão ser lidos e acedidos por parte dos desenvolvedores.
+Dito isto, por favor esteja ciente de que, ao utilizar esta aplicação, estará a dar permissão para o uso e processamento dos dados que introduzir.
 
 </string>
     <string name="accept_privacy_policy_button_text">Aceitar e continuar</string>

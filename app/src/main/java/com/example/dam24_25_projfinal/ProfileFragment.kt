@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -20,12 +20,10 @@ import com.example.dam24_25_projfinal.models.Pagina
 import com.example.dam24_25_projfinal.models.PaginasResponse
 import com.example.dam24_25_projfinal.models.Utilizador
 import com.example.dam24_25_projfinal.models.Utilizadore
-import com.example.dam24_25_projfinal.models.UtilizadoresResponse
 import com.example.dam24_25_projfinal.utils.Preferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Header
 
 class ProfileFragment : Fragment() {
 
@@ -33,16 +31,16 @@ class ProfileFragment : Fragment() {
     private lateinit var txtBiografia: TextView
     private lateinit var btnSair: Button
     private lateinit var btnEliminarConta: Button
+    private lateinit var btnEditBio: Button
+    private lateinit var edtNewBio: EditText
     private lateinit var progressBar: View
     private lateinit var profileContent: View
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PaginaAdapter
 
     private val paginasDoUtilizador = mutableListOf<Pagina>()
+    private var currentUser: Utilizador? = null  // Variável para armazenar o utilizador atual
 
-    /**
-     * Funcao chamada ao criar a view para o fragmento
-     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -52,6 +50,8 @@ class ProfileFragment : Fragment() {
         txtBiografia = view.findViewById(R.id.txtBiografia)
         btnSair = view.findViewById(R.id.btnSair)
         btnEliminarConta = view.findViewById(R.id.btnEliminarConta)
+        btnEditBio = view.findViewById(R.id.btnEditBio)
+        edtNewBio = view.findViewById(R.id.edtNewBio)
         progressBar = view.findViewById(R.id.progressBar)
         profileContent = view.findViewById(R.id.profileContent)
         recyclerView = view.findViewById(R.id.recyclerViewPaginas)
@@ -64,9 +64,57 @@ class ProfileFragment : Fragment() {
         btnSair.setOnClickListener { logOutUser() }
         btnEliminarConta.setOnClickListener { confirmDeleteUser() }
 
+        btnEditBio.setOnClickListener { toggleBioEditing() }
+
         getPaginas()
 
         return view
+    }
+
+    private fun toggleBioEditing() {
+        if (edtNewBio.visibility == View.GONE) {
+            edtNewBio.visibility = View.VISIBLE
+            edtNewBio.setText(txtBiografia.text) // Preenche o campo com a biografia atual
+        } else {
+            val newBio = edtNewBio.text.toString()
+            if (newBio.isNotEmpty()) {
+                updateBio(newBio)
+            }
+            edtNewBio.visibility = View.GONE
+        }
+    }
+
+    private fun updateBio(newBio: String) {
+        val userId = Preferences.getUser(requireContext())?.toIntOrNull() ?: return
+        val token = Preferences.getToken(requireContext())
+        val bearerToken = "Bearer $token"
+
+        val user = Utilizador(
+            user = currentUser?.user ?: "",
+            email = currentUser?.email ?: "",
+            password = currentUser?.password ?: "",
+            paginas = currentUser?.paginas ?: "",
+            biografia = newBio,
+            id = userId
+        )
+
+        val requestBody = Utilizadore(user)
+
+        val call = RetrofitInitializer().ApiConnections().editBio(bearerToken, userId,requestBody)
+        call.enqueue(object : Callback<Utilizadore> {
+            override fun onResponse(call: Call<Utilizadore>, response: Response<Utilizadore>) {
+                if (response.isSuccessful) {
+                    txtBiografia.text = newBio
+                    Toast.makeText(requireContext(), "Biografia atualizada!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Erro ao atualizar biografia", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Utilizadore>, t: Throwable) {
+                Toast.makeText(requireContext(), "Falha na comunicação com o servidor", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun fetchUserProfile(userId: Int) {
@@ -83,6 +131,7 @@ class ProfileFragment : Fragment() {
 
                 val user = response.body()?.utilizadore
                 if (user != null) {
+                    currentUser = user  // Salva o utilizador atual
                     txtUsername.text = user.user
                     txtBiografia.text = user.biografia
                 } else {

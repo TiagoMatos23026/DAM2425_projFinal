@@ -13,6 +13,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 
 interface ApiConnections {
 
@@ -76,5 +77,12 @@ interface ApiConnections {
         @Header("Authorization") authHeader: String?,
         @retrofit2.http.Path("id") paginaId: Int
     ):Call<Void>
+
+    @PUT("utilizadores/{id}")
+    fun editBio(
+        @Header("Authorization") authHeader: String?,
+        @retrofit2.http.Path("id") userId: Int,
+        @retrofit2.http.Body newUserInfo: Utilizadore
+    ): Call<Utilizadore>
 
 }
