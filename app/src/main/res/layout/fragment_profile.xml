@@ -44,7 +44,7 @@
             android:id="@+id/btnEditBio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Editar Biografia"
+            android:text="@string/Edit_bio_text"
             android:layout_marginBottom="20dp"/>
 
         <!-- EditText para nova biografia -->
@@ -52,7 +52,7 @@
             android:id="@+id/edtNewBio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nova biografia"
+            android:hint="@string/New_Bio_text"
             android:maxLength="100"
             android:visibility="gone"
             android:layout_marginBottom="20dp"

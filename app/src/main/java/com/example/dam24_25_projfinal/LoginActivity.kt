@@ -55,8 +55,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showAboutUsDialog() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("HowToMaster")
-        builder.setMessage("Desenvolvido por:\nTiago Matos 23026 & Gabriel Cravo 24842")
+        builder.setTitle("About us")
+        builder.setMessage("Projeto final de Desenvolvimento de Aplicações Moveis \nAno Letivo : 3º \nDesenvolvido por:\nTiago Matos 23026 & Gabriel Cravo 24842")
         builder.setPositiveButton("OK") { dialog, _ ->
             dialog.dismiss()
         }

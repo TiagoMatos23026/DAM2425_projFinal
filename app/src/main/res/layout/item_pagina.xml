@@ -50,8 +50,7 @@
             android:id="@+id/txtLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Localização"
-            android:text="@string/Page_author_ID"
+            android:text="@string/Localizacao_text"
             android:textSize="12sp"
             android:textColor="@android:color/darker_gray"
             android:paddingTop="4dp" />

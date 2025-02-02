@@ -27,4 +27,8 @@ Dito isto, por favor esteja ciente de que, ao utilizar esta aplicação, estará
     <string name="Page_author">Autor</string>
     <string name="Page_author_ID">ID</string>
     <string name="Page_author_text">Texto da página</string>
+    <string name="Localizacao_text">Localização</string>
+    <string name="about_us_text">About us</string>
+    <string name="Edit_bio_text">Editar Biografia</string>
+    <string name="New_Bio_text">Nova Biografia</string>
 </resources>

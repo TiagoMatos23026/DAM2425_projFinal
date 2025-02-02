@@ -96,7 +96,7 @@ class CreatePageFragment : Fragment() {
                         val city = addressList?.firstOrNull()?.locality
                         val country = addressList?.firstOrNull()?.countryName
 
-                        // Salvar cidade e país no parâmetro "localizacao" de Pagina
+                        // guarda a cidade e país no parâmetro "localizacao" da Pagina
                         val cidadeEpais = "$city, $country"
                         createPage(cidadeEpais)
                     } else {
