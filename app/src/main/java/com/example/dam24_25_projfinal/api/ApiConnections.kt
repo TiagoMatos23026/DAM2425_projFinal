@@ -18,7 +18,7 @@ import retrofit2.http.PUT
 interface ApiConnections {
 
     /**
-     * Metodo GET para buscar lista de paginas
+     * Metodo GET para buscar a lista de paginas
      */
     @GET("paginas")
     fun getAllPages(
@@ -26,7 +26,7 @@ interface ApiConnections {
     ): Call<PaginasResponse>
 
     /**
-     * Metodo GET para buscar lista de utilizadores
+     * Metodo GET para buscar a lista de utilizadores
      */
     @GET("utilizadores")
     fun getAllUsers4Login(
@@ -78,6 +78,9 @@ interface ApiConnections {
         @retrofit2.http.Path("id") paginaId: Int
     ):Call<Void>
 
+    /**
+     * Metodo put para atualizar os utilizadores
+     */
     @PUT("utilizadores/{id}")
     fun editBio(
         @Header("Authorization") authHeader: String?,

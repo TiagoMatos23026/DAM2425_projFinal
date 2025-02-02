@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Título da Página -->
+
         <TextView
             android:id="@+id/txtTitulo"
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:maxLines="1"
             android:ellipsize="end"/>
 
-        <!-- Texto da Página -->
+
         <TextView
             android:id="@+id/txtTexto"
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:ellipsize="end"
             android:paddingTop="4dp"/>
 
-        <!-- Autor da Página -->
+
         <TextView
             android:id="@+id/txtUtilizador"
             android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             android:textColor="@android:color/darker_gray"
             android:paddingTop="4dp" />
 
-        <!-- ID da Página -->
+
         <TextView
             android:id="@+id/txtLocalizacao"
             android:layout_width="match_parent"

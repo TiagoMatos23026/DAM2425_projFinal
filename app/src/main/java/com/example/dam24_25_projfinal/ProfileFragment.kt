@@ -131,7 +131,7 @@ class ProfileFragment : Fragment() {
 
                 val user = response.body()?.utilizadore
                 if (user != null) {
-                    currentUser = user  // Salva o utilizador atual
+                    currentUser = user  // guarda o utilizador atual
                     txtUsername.text = user.user
                     txtBiografia.text = user.biografia
                 } else {

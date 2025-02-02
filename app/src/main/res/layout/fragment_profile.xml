@@ -18,7 +18,7 @@
         android:visibility="gone"
         android:id="@+id/profileContent">
 
-        <!-- Nome do utilizador -->
+
         <TextView
             android:id="@+id/txtUsername"
             android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginBottom="5dp"/>
 
-        <!-- Biografia do utilizador -->
+
         <TextView
             android:id="@+id/txtBiografia"
             android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginBottom="30dp"/>
 
-        <!-- Botão para editar biografia -->
+
         <Button
             android:id="@+id/btnEditBio"
             android:layout_width="match_parent"
@@ -47,7 +47,7 @@
             android:text="@string/Edit_bio_text"
             android:layout_marginBottom="20dp"/>
 
-        <!-- EditText para nova biografia -->
+
         <EditText
             android:id="@+id/edtNewBio"
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
             android:layout_marginBottom="20dp"
             android:inputType="text"/>
 
-        <!-- RecyclerView para exibir páginas filtradas -->
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPaginas"
             android:layout_width="match_parent"
@@ -67,7 +67,7 @@
             android:padding="8dp"
             android:scrollbars="vertical"/>
 
-        <!-- Botões na parte inferior -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

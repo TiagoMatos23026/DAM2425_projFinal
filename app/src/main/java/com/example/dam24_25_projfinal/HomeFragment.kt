@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
     }
 
     /**
-     * Funcao para pegar a lista de paginas da base de dados e as imprimir no ecra
+     * Funcao que vai buscar a lista de páginas da base de dados e as imprime no ecra
      */
     private fun getPaginas() {
         progressBar.visibility = View.VISIBLE

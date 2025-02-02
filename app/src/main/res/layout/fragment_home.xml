@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <!-- RecyclerView para listar os itens -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:padding="8dp"
         android:scrollbars="vertical" />
 
-    <!-- ProgressBar centralizada -->
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
