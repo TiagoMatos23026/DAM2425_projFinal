@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dam24_25_projfinal.api.RetrofitInitializer
 import com.example.dam24_25_projfinal.models.Utilizador
@@ -17,9 +18,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
-    /**
-     * Funcao chamada ao iniciar a atividade
-     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -27,14 +26,21 @@ class LoginActivity : AppCompatActivity() {
         val usernameInput = findViewById<EditText>(R.id.username)
         val passwordInput = findViewById<EditText>(R.id.password)
         val loginButton = findViewById<Button>(R.id.login_button)
-
         val registerLink = findViewById<TextView>(R.id.register_link)
+        val aboutUsButton = findViewById<Button>(R.id.about_us_button)
+
+        // Link para a tela de registo
         registerLink.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
+        // Exibe o pop-up "About Us"
+        aboutUsButton.setOnClickListener {
+            showAboutUsDialog()
+        }
 
+        // Lógica de login
         loginButton.setOnClickListener {
             val username = usernameInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
@@ -45,13 +51,18 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
-    /**
-     * Funcao chamada para pegar a lista de utilizadores para fazer login
-     * *******Maneira insegura de se fazer login*******
-     */
+    private fun showAboutUsDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("HowToMaster")
+        builder.setMessage("Desenvolvido por:\nTiago Matos 23026 & Gabriel Cravo 24842")
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
+    }
+
     private fun getUsers(username: String, password: String) {
         val retrofitData = RetrofitInitializer().ApiConnections().getAllUsers4Login()
 
