@@ -81,7 +81,7 @@ class RegisterActivity : AppCompatActivity() {
      * Recebe um username, um email, uma password e uma biografia placeholder
      */
     private fun registerUser(username: String, email: String, password: String, biography: String) {
-        val newUser = Utilizador(username, email, password, "2, 4", biography, null)
+        val newUser = Utilizador(username, email, password, "", biography, null)
         val requestBody = Utilizadore(newUser)
 
         val call = RetrofitInitializer().ApiConnections().registerUser(bearerToken, requestBody)

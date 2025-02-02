@@ -7,6 +7,7 @@ import com.example.dam24_25_projfinal.models.Utilizador
 import com.example.dam24_25_projfinal.models.Utilizadore
 import com.example.dam24_25_projfinal.models.UtilizadoresResponse
 import retrofit2.Call
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -58,7 +59,22 @@ interface ApiConnections {
         @retrofit2.http.Body newPagina: Paginae
     ): Call<Paginae>
 
+    /**
+     * Metodo DELETE para eliminar utilizadores
+     */
+    @DELETE("utilizadores/{id}")
+    fun deleteUser(
+        @Header("Authorization") authHeader: String?,
+        @retrofit2.http.Path("id") userId: Int
+    ): Call<Void>
 
-
+    /**
+     * Metodo DELETE para eliminar paginas
+     */
+    @DELETE("paginas/{id}")
+    fun deletePagina(
+        @Header("Authorization") authHeader: String?,
+        @retrofit2.http.Path("id") paginaId: Int
+    ):Call<Void>
 
 }
