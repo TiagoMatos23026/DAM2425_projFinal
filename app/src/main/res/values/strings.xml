@@ -8,7 +8,11 @@
     <string name="username_hint">Nome de Utilizador</string>
     <string name="password_hint">Senha</string>
     <string name="login_button_text">Entrar</string>
-    <string name="register_button_text">Não tem conta? Registe-se.</string>
+    <string name="create_account_button_text">Não tem conta? Registe-se.</string>
+    <string name="Username_text_box">Nome do Utilizador.</string>
+    <string name="Email_text_box">Email.</string>
+    <string name="Register_check_button">Registar</string>
+    <string name="Cancel_button">Cancelar</string>
 
     <string name="privacy_policy">Esta aplicação trata-se de um projeto académico aol qual não foram implementados mecanismos de segurança devidamente avançados.
 Por favor, não introduza dados sensíveis ou pessoais, pois todos e qualquer dados que introduzir poderão ser lidos e acedidos por parte dos desenvolvedores.
@@ -18,4 +22,9 @@ Dito isto, por favor esteja ciente de que, ao utilizar esta aplicação, estará
     <string name="accept_privacy_policy_button_text">Aceitar e continuar</string>
 
     <string name="sair_button_text">Sair</string>
+    <string name="Delete_account_button_text">Eliminar Conta</string>
+    <string name="Page_title">Título da página</string>
+    <string name="Page_author">Autor</string>
+    <string name="Page_author_ID">ID</string>
+    <string name="Page_author_text">Texto da página</string>
 </resources>
