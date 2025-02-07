@@ -10,7 +10,7 @@ class RetrofitInitializer {
     private val gson: Gson = GsonBuilder().setLenient().create()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.sheety.co/32e0df12370d9efda803d7381708ed6b/damProj/")
+        .baseUrl("https://api.sheety.co/0aa4db5794a943d438f39bd9d0787a89/damProj/")
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 

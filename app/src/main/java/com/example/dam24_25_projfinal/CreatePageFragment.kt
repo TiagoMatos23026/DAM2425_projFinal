@@ -48,6 +48,8 @@ class CreatePageFragment : Fragment() {
 
         tituloEditText = view.findViewById(R.id.editTextTitulo)
         textoEditText = view.findViewById(R.id.editTextTexto)
+        progressBar = view.findViewById(R.id.progressBar)
+        layoutCreatePage = view.findViewById(R.id.layoutCreatePage)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 

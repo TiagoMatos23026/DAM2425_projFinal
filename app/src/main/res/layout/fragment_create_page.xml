@@ -21,7 +21,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:text="Criar Nova Página"
+            android:text="@string/New_Page_Text"
             android:textColor="@android:color/black"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:hint="Título"
+            android:hint="@string/New_Page_Title_Hint"
             android:padding="16dp"
             android:textColor="@android:color/black"
             android:textSize="16sp"
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top|start"
-                android:hint="Texto"
+                android:hint="@string/New_Page_Text_Hint"
                 android:inputType="textMultiLine"
                 android:padding="12dp"
                 android:textColor="@android:color/black"
@@ -68,7 +68,7 @@
             android:paddingTop="16dp"
             android:paddingEnd="32dp"
             android:paddingBottom="16dp"
-            android:text="Criar Página"
+            android:text="@string/New_Page_Button"
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 

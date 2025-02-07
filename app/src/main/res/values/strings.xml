@@ -31,4 +31,12 @@ Dito isto, por favor esteja ciente de que, ao utilizar esta aplicação, estará
     <string name="about_us_text">About us</string>
     <string name="Edit_bio_text">Editar Biografia</string>
     <string name="New_Bio_text">Nova Biografia</string>
+
+    <string name="New_Page_Text">Criar Nova Página</string>
+    <string name="New_Page_Title_Hint">Título</string>
+    <string name="New_Page_Text_Hint">Texto</string>
+    <string name="New_Page_Button">Criar Página</string>
+
+
+
 </resources>
